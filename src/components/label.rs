@@ -2,7 +2,7 @@ use tuirealm::command::{Cmd, CmdResult};
 use tuirealm::event::{Key, KeyEvent, KeyModifiers};
 use tuirealm::props::{Alignment, Color, Style, TextModifiers};
 use tuirealm::tui::layout::Rect;
-use tuirealm::tui::widgets::Paragraph;
+use tuirealm::tui::widgets::{self, Block, Paragraph};
 use tuirealm::{
     AttrValue, Attribute, Component, Event, Frame, MockComponent, NoUserEvent, Props, State,
 };
@@ -90,7 +90,10 @@ impl MockComponent for Label {
                             .bg(background)
                             .add_modifier(modifiers),
                     )
-                    .alignment(alignment),
+                    .alignment(alignment)
+                    .block(Block::default()
+                            .title("Paragraph")
+                            .borders(widgets::Borders::ALL)),
                 area,
             );
         }
